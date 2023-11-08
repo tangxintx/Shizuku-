@@ -2,22 +2,26 @@
 <html>
 <head>
  <title>视频播放器</title>
- <style>
- body {
- margin: 0;
- padding: 0;
- display: flex;
- justify-content: center;
- align-items: center;
- height: 100vh;
- background-color: #f0f0f0;
- }
- </style>
 </head>
 <body>
- <video autoplay muted loop>
+ <video id="videoPlayer" autoplay="true" controls>
  <source src="tx.mp4" type="video/mp4">
- Your browser does not support the video tag.
+ 
  </video>
+ 
+ <script>
+ window.onload = function() {
+ var video = document.getElementById("videoPlayer");
+ window.setInterval(function() {
+ if (video.currentTime >= video.duration) {
+ video.currentTime = 0;
+ } else {
+ setTimeout(function() {
+ video.play();
+ }, 2200); // 延迟一段时间后开始播放，以便页面加载完成
+ }
+ } , 10000); // 每秒检查一次视频播放时间
+ }
+ </script>
 </body>
 </html>
